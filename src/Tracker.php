@@ -2,13 +2,15 @@
 
 namespace SquareBoat\Mixtracker;
 
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 
-class Tracker implements ShouldQueue
+class Tracker implements ShouldQueue, SelfHandling
 {
-    use InteractsWithQueue;
+    use InteractsWithQueue, SerializesModels;
 
     /**
      * Id to identify mixpanel profile.
