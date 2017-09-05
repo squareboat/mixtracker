@@ -33,15 +33,18 @@ class Mixtracker {
      *
      * @param  integer $id
      * @param  string  $event
+     * @param  array   $properties
      * @return void
      */
-    public function track($id, $event)
+    public function track($id, $event, $properties = [])
     {
         if (!$this->isSilent()){
 
             if ($this->config->get("mixtracker.events.{$event}")) {
 
-                $this->dispatch(new Tracker($id, $this->config->get("mixtracker.events.{$event}")));
+                $this->dispatch(
+                    new Tracker($id, $this->config->get("mixtracker.events.{$event}"), $properties)
+                );
 
             }
 

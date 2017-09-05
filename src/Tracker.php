@@ -11,15 +11,34 @@ class Tracker implements ShouldQueue
     use InteractsWithQueue;
 
     /**
+     * Id to identify mixpanel profile.
+     *
+     */
+    private $id;
+
+    /**
+     * Event name to be tracked.
+     *
+     */
+    private $event;
+
+    /**
+     * Additional properties for tracked event.
+     *
+     */
+    private $properties;
+
+    /**
      * Create a new task instance.
      *
      * @return void
      */
-    public function __construct($id, $event)
+    public function __construct($id, $event, $properties = [])
     {
         $this->id = $id;
         $this->event = $event;
-        $this->mixPanel = app()->make('GeneaLabs\LaravelMixPanel\LaravelMixPanel');
+        $this->properties = $properties;
+
     }
 
     /**
@@ -29,7 +48,9 @@ class Tracker implements ShouldQueue
      */
     public function handle()
     {
-        $this->mixPanel->identify($this->id);
-        $this->mixPanel->track($this->event);
+        $mixPanel = app()->make('GeneaLabs\LaravelMixPanel\LaravelMixPanel');
+
+        $mixPanel->identify($this->id);
+        $mixPanel->track($this->event, $this->properties);
     }
 }
