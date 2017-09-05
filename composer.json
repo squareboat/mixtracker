@@ -1,0 +1,25 @@
+{
+    "name": "squareboat/mixtracker",
+    "description": "MixPanel events tracker for laravel app",
+    "type": "library",
+    "keywords": ["laravel", "mixpanel"],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.4.0",
+        "genealabs/laravel-mixpanel": "~0.5.1",
+        "illuminate/support": "5.2.*",
+        "illuminate/config": "5.2.*"
+    },
+    "authors": [
+        {
+            "name": "Deepansh Sachdeva",
+            "email": "deepansh.sachdeva@squareboat.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "SquareBoat\\Mixtracker\\": "src/"
+        }
+    },
+     "minimum-stability": "dev"
+}
